@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="row">
+            <div class="col col-lg-12">
+                <a href="/"><img class="logo" src="/assets/images/logo.png"/></a>
+                <div class="search-form">
+                    <form class="form-inline" method="post" action="/search">
+                        <div class="form-group">
+                            <input id="search" type="text" class="form-control" name="search"
+                                   placeholder="Search news..."/>
+                            <button id="search-button" type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {{#if result.searchInformation}}
+    <div class="searchInformation">
+        <b>Search Term: {{result.searchInformation.searchTerms}}</b> <br>
+        <b>About {{result.searchInformation.totalResults}} Total Results</b>
+        <b>({{result.searchInformation.searchTime}} seconds) </b>
+
+    </div>
+    {{/if}}
+    <div class="news">
+        {{#each result.data}}
+            <h2><a href="{{link}}" target="_blank">{{title}}</a></h2>
+            <div>{{snippet}}</div>
+        {{/each}}
+    </div>
+
+{{#if result.pagination}}
+    <div class="pagination align-content-center">
+        {{#pagination result.pagination}}{{/pagination}}
+    </div>
+{{/if}}
+
+</div>
